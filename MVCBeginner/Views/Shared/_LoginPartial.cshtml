@@ -1,0 +1,23 @@
+﻿@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("Logout", "User", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <ul class="nav navbar-nav navbar-right">
+            <li>@Html.ActionLink("Home", "Index", "Home", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+            <li>@Html.ActionLink("Edit Profile", "Edit", "User", routeValues: null, htmlAttributes: new { id = "editLink" })</li>
+            <li>@Html.ActionLink("Registration", "Registration", "User", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+            <li>@Html.ActionLink("List of Friends", "Index", "Friend", routeValues: null, htmlAttributes: new { id = "showFriendsLink" })</li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Logout</a></li>
+            @*@Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })*@
+        </ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Log in", "Login", "User", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        <li>@Html.ActionLink("Registration", "Registration", "User", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+    </ul>
+}
